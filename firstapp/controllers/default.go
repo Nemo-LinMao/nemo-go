@@ -13,3 +13,13 @@ func (c *MainController) Get() {
 	c.Data["Email"] = "astaxie@gmail.com"
 	c.TplName = "index.tpl"
 }
+
+type HelloController struct {
+	beego.Controller
+}
+
+func (this *HelloController) Get() {
+	this.Data["title"] = "nemo"
+	this.TplName = "home.html"
+
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
+</head>
+<body class="container">
+	<div class="row clearfix">
+
+        <div id="myCarousel" class="carousel slide">
+           <!-- 轮播（Carousel）指标 -->
+           <ol class="carousel-indicators">
+                <li data-target="#myCarousel"
+                    v-for="image in images"
+                    v-bind:data-slide-to="image.index"
+                    v-bind:class="image.index==1 ? 'active':''">
+                </li>
+           </ol>
+           <!-- 轮播（Carousel）项目 -->
+           <div class="carousel-inner">
+                <div v-for="image in images" v-bind:class="image.index==1 ? 'item active':'item'">
+                    <img v-bind:src="image.source" v-bind:alt="image.text" />
+                </div>
+           </div>
+           <!-- 轮播（Carousel）导航 -->
+           <a class="carousel-control left" href="#myCarousel"
+              data-slide="prev">&lsaquo;</a>
+           <a class="carousel-control right" href="#myCarousel"
+              data-slide="next">&rsaquo;</a>
+        </div>
+
+	</div>
+
+</body>
+
+<script src="static/js/jquery-2.1.4.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/vue.js"></script>
+<script>
+    var exampleData = {
+        message: 'Hello World!'
+    };
+
+    var flag = 0;
+    var exampleVM = new Vue({
+        el: '#app',
+        data: exampleData,
+        methods: {
+            reverseMessage: function() {
+                if (flag == 0)
+                {
+                    this.message = this.message+' Clicked!!';
+                    flag = 1;
+                }
+                else
+                {
+                    var x = this.message.split(' ');
+                    //x.pop();
+                    x = x.slice(0, x.length-1);
+                    this.message = x.join(' ');
+                    flag = 0;
+                }
+
+
+            }
+        }
+    });
+
+    var exampleVM2 = new Vue({
+        el: '#app1',
+        data: {
+            greeting: true,
+            name: 'nemo'
+        }
+    });
+
+    var exampleVM3 = new Vue({
+        el: '#app-ul',
+        data: {
+            todos: [{text: 'learn javascript'}, {text: 'learn vue'}, {text: 'Build system'}]
+        }
+    });
+
+    var imageVM = new Vue({
+        el: "#myCarousel",
+        data: {
+            images: [
+                { source: "static/img/NeonMuseum_ZH-CN8131993872_1920x1080.jpg", text: "first slide", index: 0 },
+                { source: "static/img/BloodMoonVideo_ZH-CN9099765312_1920x1080.jpg", text: "second slide", index: 1 },
+                { source: "static/img/BadlandsHeadlights_ZH-CN11986873693_1920x1080.jpg", text: "third slide", index: 2 }
+            ]
+        }
+    });
+</script>
+</html>
