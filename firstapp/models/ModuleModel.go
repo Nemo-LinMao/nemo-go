@@ -12,16 +12,13 @@ type Module struct {
 	Img      	string `orm:"size(256)"`
 }
 
-// InitModule 初始化主页的所有模块
-func InitModule() {
-	o := orm.NewOrm()
-	o.Using("default")
+func (this *Module) TableName() string {
+	return "module"
+}
 
-	modules := []Module {   {Url:"slideshow", Name:"Memory Gallery", Img:"static/img/modules/slide.png"},
-							{Url:"image", Name:"Images", Img:"static/img/modules/image.png"},
-							{Url:"color", Name:"Color", Img:"static/img/modules/color.png"},
-							{Url:"video", Name:"Video", Img:"static/img/modules/video.png"} }
-	for _, val := range modules {
-		o.Insert(&val)
-	}
+func (this *Module) Trunc() {
+	o := orm.NewOrm()
+	o.Using("defualt")
+
+	o.Raw("trunc table t_" + this.TableName()).Exec()
 }

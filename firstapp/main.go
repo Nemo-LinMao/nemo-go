@@ -9,7 +9,7 @@ import (
 	"github.com/tinynemo/nemo-go/firstapp/models"
 )
 
-func init() {
+func Init() {
 	// regist database
 	orm.RegisterDataBase("default", "mysql", "root:root@/nemo_go?charset=UTF8")
 	// init models
@@ -17,7 +17,6 @@ func init() {
 
 	// regist static file path
 	beego.SetStaticPath("/assets","assets")
-
 }
 
 func main() {

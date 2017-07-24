@@ -14,4 +14,6 @@ func init() {
 	beego.Router("/image", &controllers.IndexImageController{})
 	beego.Router("/color", &controllers.IndexColorController{})
 	beego.Router("/video", &controllers.IndexVideoController{})
+
+	beego.Router("/static/gallery/*", &controllers.GalleryController{})
 }
