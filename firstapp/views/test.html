@@ -1,0 +1,189 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1.0">
+    <link href="static/css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-md-2">
+                <ul class="nav nav-list" contenteditable="true">
+                    <li class="nav-header">列表标题</li>
+                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="#">库</a></li>
+                    <li><a href="#">应用</a></li>
+                    <li class="nav-header">功能列表</li>
+                    <li><a href="#">资料</a></li>
+                    <li><a href="#">设置</a></li>
+                    <li class="divider">&nbsp;</li>
+                    <li><a href="#">帮助</a></li>
+                </ul>
+            </div>
+            <div class="col-md-10">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container-fluid">
+                            <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a href="#" class="brand" contenteditable="true">网站名</a>
+                            <div class="nav-collapse collapse navbar-responsive-collapse">
+                                <ul class="nav" contenteditable="true">
+                                    <li class="active"><a href="#">主页</a></li>
+                                    <li><a href="#">链接</a></li>
+                                    <li><a href="#">链接</a></li>
+                                    <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单 <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">下拉导航1</a></li>
+                                            <li><a href="#">下拉导航2</a></li>
+                                            <li><a href="#">其他</a></li>
+                                            <li class="divider"></li>
+                                            <li class="nav-header">标签</li>
+                                            <li><a href="#">链接1</a></li>
+                                            <li><a href="#">链接2</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="nav pull-right" contenteditable="true">
+                                    <li><a href="#">右边链接</a></li>
+                                    <li class="divider-vertical"></li>
+                                    <li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单 <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">下拉导航1</a></li>
+                                            <li><a href="#">下拉导航2</a></li>
+                                            <li><a href="#">其他</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="#">链接3</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /.nav-collapse -->
+                        </div>
+                    </div>
+                    <!-- /navbar-inner -->
+                </div>
+
+                <div id="carousel-img" class="carousel slide">
+                    <ol class="carousel-indicators">
+                        <li data-slide-to="0" data-target="#carousel-img">
+                        </li>
+                        <li data-slide-to="1" data-target="#carousel-img">
+                        </li>
+                        <li data-slide-to="2" data-target="#carousel-img" class="active">
+                        </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div v-for="image in images" v-bind:class="image.index==1 ? 'item active':'item'">
+                            <img v-bind:src="image.source" v-bind:alt="image.text" />
+                        </div>
+                    </div>
+                    <a data-slide="prev" href="#carousel-img" class="left carousel-control">‹</a>
+                    <a data-slide="next" href="#carousel-img" class="right carousel-control">›</a>
+                </div>
+                <table id="box-img" class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a data-slide="prev" href="#carousel-img" class="left">‹</a>
+                            </td>
+                            <td v-for="image in images">
+                                <img alt="140*140" width=140 height=140 v-bind:src="image.source" />
+                            </td>
+                            <td>
+                                <a data-slide="next" href="#carousel-img" class="right">›</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div id="crawler-img">
+                    <button id="btn-crawl" class="btn btn-info" v-on:click="onClick" v-bind:disabled="isDisable"> Get Bing Image </button>
+                    <div class=" progress ">
+                        <div class="progress-bar " role="progressbar " aria-valuenow="60 " aria-valuemin="0 " aria-valuemax="100" v-bind:style="{width: process + '%'}">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</body>
+
+<script src="static/js/jquery-2.1.4.js "></script>
+<script src="static/js/bootstrap.min.js "></script>
+<script src="static/js/vue.js "></script>
+<script src="static/js/axios.js "></script>
+<script>
+    var imgCarVM = new Vue({
+        el: "#carousel-img",
+        data: {
+            images: [{
+                source: "static/img/1.jpg ",
+                text: "first slide ",
+                index: 0
+            }, {
+                source: "static/img/2.jpg ",
+                text: "second slide ",
+                index: 1
+            }, {
+                source: "static/img/3.jpg ",
+                text: "third slide ",
+                index: 2
+            }]
+        }
+    });
+
+    var imgBoxVM = new Vue({
+        el: "#box-img ",
+        data: {
+            images: [{
+                source: "static/img/1.jpg ",
+                text: "first slide ",
+                index: 0
+            }, {
+                source: "static/img/2.jpg ",
+                text: "second slide ",
+                index: 1
+            }, {
+                source: "static/img/3.jpg ",
+                text: "third slide ",
+                index: 2
+            }],
+        },
+    });
+
+    var crawlerVM = new Vue({
+        el: "#crawler-img ",
+        data: {
+            totalcnt: 0,
+            process: 0,
+            isDisable: false,
+        },
+        methods: {
+            onClick: function() {
+                axios.post("/crawlpic ")
+                    .then(function(rsp) {
+                        crawlerVM.totalcnt = rsp.data.total;
+                        setTimeout(crawlerVM.pollServer, 100);
+                    });
+                this.isDisable = true;
+            },
+            pollServer: function() {
+                let callbackGet = function(rsp) {
+                    if (rsp.data.cnt >= crawlerVM.totalcnt) {
+                        crawlerVM.totalcnt = 0;
+                        crawlerVM.isDisable = false;
+                        crawlerVM.process = 100;
+                    } else {
+                        crawlerVM.process = Math.round(rsp.data.cnt / crawlerVM.totalcnt * 200);
+                        // alert("process: " + crawlerVM.process);
+                        setTimeout(crawlerVM.pollServer, 100);
+                    }
+                }
+                axios.get("/crawlpic ").then(callbackGet);
+            }
+        }
+    });
+</script>
+
+</html>
