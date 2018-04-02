@@ -9,6 +9,7 @@ import (
 	"github.com/tinynemo/nemo-go/firstapp/models"
 )
 
+// Init app
 func Init() {
 	// regist database
 	orm.RegisterDataBase("default", "mysql", "root:root@/nemo_go?charset=UTF8")
@@ -23,6 +24,7 @@ func main() {
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.BConfig.WebConfig.TemplateLeft = "<<<"
 	beego.BConfig.WebConfig.TemplateRight = ">>>"
-	
+
+	Init()
 	beego.Run()
 }
